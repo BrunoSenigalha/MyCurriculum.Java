@@ -1,5 +1,6 @@
 package com.bruno.senigalha.curriculum.entities;
 
+import com.bruno.senigalha.curriculum.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
@@ -19,9 +20,7 @@ public class Curriculum implements Serializable {
     private Long id;
     private String picture;
     private String name;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
+    private Integer gender;
     private String professionalGoals;
     private String phone;
     private String email;
@@ -33,22 +32,32 @@ public class Curriculum implements Serializable {
     public Curriculum() {
     }
 
-    public Curriculum(Long id, String picture, String name, LocalDate birthDate, String professionalGoals, String phone, String email, String linkedIn) {
+    public Curriculum(Long id, String picture, String name, Gender gender, String professionalGoals, String phone, String email, String linkedIn) {
         this.id = id;
         this.picture = picture;
         this.name = name;
-        this.birthDate = birthDate;
+        setGender(gender);
         this.professionalGoals = professionalGoals;
         this.phone = phone;
         this.email = email;
         this.linkedIn = linkedIn;
     }
 
+    public Gender getGender() {
+        return Gender.valueOf(gender);
+    }
+
+    public void setGender(Gender gender) {
+        if(gender != null){
+            this.gender = gender.getCode();
+        }
+    }
+
     public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Address address){
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -74,14 +83,6 @@ public class Curriculum implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getProfessionalGoals() {

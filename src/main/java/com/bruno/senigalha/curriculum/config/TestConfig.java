@@ -2,6 +2,7 @@ package com.bruno.senigalha.curriculum.config;
 
 import com.bruno.senigalha.curriculum.entities.Address;
 import com.bruno.senigalha.curriculum.entities.Curriculum;
+import com.bruno.senigalha.curriculum.enums.Gender;
 import com.bruno.senigalha.curriculum.repositories.AddressRepository;
 import com.bruno.senigalha.curriculum.repositories.CurriculumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Curriculum c1 = new Curriculum(null, " ", "Lucas Martins", LocalDate.of(1991, 6, 17), "Software Developer", "1699998888", "bruno@gmail.com", "www.linkedin.com.br");
-        Curriculum c2 = new Curriculum(null, " ", "Jhon Spasia", LocalDate.of(2000, 10, 1), "Technical Engineer", "11569822355", "john@gmail.com", "www.linkedin.com.br");
-        Curriculum c3 = new Curriculum(null, " ", "Anastasia Rose", LocalDate.of(1998, 3, 15), "Human Resources Manager", "55555555", "anastasia@gmail.com", "www.linkedin.com.br");
+        Curriculum c1 = new Curriculum(null, " ", "Lucas Martins", Gender.MASCULINO, "Software Developer", "1699998888", "bruno@gmail.com", "www.linkedin.com.br");
+        Curriculum c2 = new Curriculum(null, " ", "Jhon Spasia", Gender.PREFIRO_NAO_INFORMAR, "Technical Engineer", "11569822355", "john@gmail.com", "www.linkedin.com.br");
+        Curriculum c3 = new Curriculum(null, " ", "Anastasia Rose", Gender.FEMININO, "Human Resources Manager", "55555555", "anastasia@gmail.com", "www.linkedin.com.br");
         curriculumRepository.saveAll(Arrays.asList(c1, c2, c3));
 
         Address a1 = new Address(null, "1566666", "São Paulo", "Brazil", c1);
