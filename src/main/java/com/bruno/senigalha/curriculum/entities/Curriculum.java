@@ -1,34 +1,55 @@
 package com.bruno.senigalha.curriculum.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_curriculum")
-public class Curriculum {
+public class Curriculum implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private String picture;
     private String name;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
     private String professionalGoals;
     private String phone;
     private String email;
     private String linkedIn;
 
+    @OneToOne(mappedBy = "curriculum")
+    private Address address;
+
     public Curriculum() {
     }
 
-    public Curriculum(Long id, String picture, String name, String professionalGoals, String phone, String email, String linkedIn) {
+    public Curriculum(Long id, String picture, String name, LocalDate birthDate, String professionalGoals, String phone, String email, String linkedIn) {
         this.id = id;
         this.picture = picture;
         this.name = name;
+        this.birthDate = birthDate;
         this.professionalGoals = professionalGoals;
         this.phone = phone;
         this.email = email;
         this.linkedIn = linkedIn;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address){
+        this.address = address;
     }
 
     public Long getId() {
@@ -53,6 +74,14 @@ public class Curriculum {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getProfessionalGoals() {
