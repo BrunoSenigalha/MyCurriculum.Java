@@ -1,8 +1,7 @@
 package com.bruno.senigalha.curriculum.resources;
 
-import com.bruno.senigalha.curriculum.entities.Curriculum;
-import com.bruno.senigalha.curriculum.services.CurriculumService;
-import jakarta.annotation.Resource;
+import com.bruno.senigalha.curriculum.entities.Address;
+import com.bruno.senigalha.curriculum.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/curricula")
-public class CurriculumResource {
+@RequestMapping(value = "/addresses")
+public class AddressResource {
 
     @Autowired
-    private CurriculumService service;
+    private AddressService service;
 
     @GetMapping
-    public ResponseEntity<List<Curriculum>> findAll(){
-        List<Curriculum> list = service.findAll();
+    public ResponseEntity<List<Address>> findAll(){
+        List<Address> list = service.findAll();
         return ResponseEntity.ok(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Curriculum> findById(@PathVariable Long id){
-        Curriculum obj = service.findById(id);
+    public ResponseEntity<Address> findById(@PathVariable Long id){
+        Address obj = service.findById(id);
         return ResponseEntity.ok(obj);
     }
 }

@@ -27,11 +27,13 @@ public class TestConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Curriculum c1 = new Curriculum(null, " ", "Lucas Martins", LocalDate.of(1991, 6, 17), "Software Developer", "1699998888", "bruno@gmail.com", "www.linkedin.com.br");
-        curriculumRepository.saveAll(List.of(c1));
+        Curriculum c2 = new Curriculum(null, " ", "Jhon Spasia", LocalDate.of(2000, 10, 1), "Technical Engineer", "11569822355", "john@gmail.com", "www.linkedin.com.br");
+        Curriculum c3 = new Curriculum(null, " ", "Anastasia Rose", LocalDate.of(1998, 3, 15), "Human Resources Manager", "55555555", "anastasia@gmail.com", "www.linkedin.com.br");
+        curriculumRepository.saveAll(Arrays.asList(c1, c2, c3));
 
         Address a1 = new Address(null, "1566666", "São Paulo", "Brazil", c1);
-        addressRepository.saveAll(List.of(a1));
-
-
+        Address a2 = new Address(null, "588955", "Blumenau", "Brazil", c3);
+        Address a3 = new Address(null, "5855558", "Manhattan", "United States", c2);
+        addressRepository.saveAll(Arrays.asList(a1, a2, a3));
     }
 }
