@@ -14,11 +14,11 @@ public class LanguageService {
     @Autowired
     private LanguageRepository repository;
 
-    public List<Language> findAll(){
+    public List<Language> findAll() {
         return repository.findAll();
     }
 
-    public Language findById(Long id){
+    public Language findById(Long id) {
         Optional<Language> obj = repository.findById(id);
         return obj.get();
     }

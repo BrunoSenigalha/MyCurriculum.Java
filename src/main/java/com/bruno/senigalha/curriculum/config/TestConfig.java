@@ -1,15 +1,9 @@
 package com.bruno.senigalha.curriculum.config;
 
-import com.bruno.senigalha.curriculum.entities.Address;
-import com.bruno.senigalha.curriculum.entities.Curriculum;
-import com.bruno.senigalha.curriculum.entities.Language;
-import com.bruno.senigalha.curriculum.entities.ProfessionalExp;
+import com.bruno.senigalha.curriculum.entities.*;
 import com.bruno.senigalha.curriculum.enums.Gender;
 import com.bruno.senigalha.curriculum.enums.Proficiencylevel;
-import com.bruno.senigalha.curriculum.repositories.AddressRepository;
-import com.bruno.senigalha.curriculum.repositories.CurriculumRepository;
-import com.bruno.senigalha.curriculum.repositories.LanguageRepository;
-import com.bruno.senigalha.curriculum.repositories.ProfessionalExpRepository;
+import com.bruno.senigalha.curriculum.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +28,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProfessionalExpRepository professionalExpRepository;
+
+    @Autowired
+    private LinkRepository linkRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -61,6 +58,12 @@ public class TestConfig implements CommandLineRunner {
         Language l5 = new Language(null, "English", Proficiencylevel.AVANCADO, Proficiencylevel.FLUENTE, Proficiencylevel.FLUENTE, c3);
         Language l6 = new Language(null, "Portuguese", Proficiencylevel.BASICO, Proficiencylevel.BASICO, Proficiencylevel.BASICO, c3);
         languageRepository.saveAll(Arrays.asList(l1, l2, l3, l4, l5, l6));
+
+        Link link1 = new Link(null, "www.url.com.br", c3);
+        Link link2 = new Link(null, "www.url.com.br", c3);
+        Link link3 = new Link(null, "www.url.com.br", c3);
+        Link link4 = new Link(null, "www.url.com.br", c2);
+        linkRepository.saveAll(Arrays.asList(link1, link2, link3, link4));
 
 
     }

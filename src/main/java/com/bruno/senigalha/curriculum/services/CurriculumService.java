@@ -14,11 +14,11 @@ public class CurriculumService {
     @Autowired
     private CurriculumRepository repository;
 
-    public List<Curriculum> findAll(){
+    public List<Curriculum> findAll() {
         return repository.findAll();
     }
 
-    public Curriculum findById(Long id){
+    public Curriculum findById(Long id) {
         Optional<Curriculum> obj = repository.findById(id);
         return obj.get();
     }

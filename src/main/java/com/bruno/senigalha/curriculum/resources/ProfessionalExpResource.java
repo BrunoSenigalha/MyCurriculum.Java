@@ -1,8 +1,6 @@
 package com.bruno.senigalha.curriculum.resources;
 
-import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.ProfessionalExp;
-import com.bruno.senigalha.curriculum.services.LanguageService;
 import com.bruno.senigalha.curriculum.services.ProfessionalExpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
