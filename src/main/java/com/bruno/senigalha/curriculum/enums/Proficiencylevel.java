@@ -1,10 +1,10 @@
 package com.bruno.senigalha.curriculum.enums;
 
 public enum Proficiencylevel {
-    BASIC(1),
-    MEDIUM(2),
-    ADVANCED(3),
-    FLUENCY(4);
+    BASICO(1),
+    MEDIO(2),
+    AVANCADO(3),
+    FLUENTE(4);
     
     private final int code;
     
