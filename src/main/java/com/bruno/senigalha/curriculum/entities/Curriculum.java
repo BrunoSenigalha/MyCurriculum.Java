@@ -29,6 +29,9 @@ public class Curriculum implements Serializable {
     private final Set<ProfessionalExp> professionalExperiences = new HashSet<>();
 
     @OneToMany(mappedBy = "curriculum")
+    private final Set<AcademicExp> academicExp = new HashSet<>();
+
+    @OneToMany(mappedBy = "curriculum")
     private final Set<Language> languages = new HashSet<>();
 
     @OneToMany(mappedBy = "curriculum")
@@ -48,11 +51,15 @@ public class Curriculum implements Serializable {
         this.linkedIn = linkedIn;
     }
 
+    public Set<AcademicExp> getAcademicExp() {
+        return academicExp;
+    }
+
     public Set<Link> getLinks() {
         return links;
     }
 
-    public Set<ProfessionalExp> getProfessionalExperiences(){
+    public Set<ProfessionalExp> getProfessionalExperiences() {
         return professionalExperiences;
     }
 

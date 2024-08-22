@@ -1,8 +1,7 @@
 package com.bruno.senigalha.curriculum.config;
 
 import com.bruno.senigalha.curriculum.entities.*;
-import com.bruno.senigalha.curriculum.enums.Gender;
-import com.bruno.senigalha.curriculum.enums.Proficiencylevel;
+import com.bruno.senigalha.curriculum.enums.*;
 import com.bruno.senigalha.curriculum.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private LinkRepository linkRepository;
 
+    @Autowired
+    private AcademicExpRepository academicExpRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -45,6 +47,11 @@ public class TestConfig implements CommandLineRunner {
         Address a2 = new Address(null, "588955", "Blumenau", "Brazil", c3);
         Address a3 = new Address(null, "5855558", "Manhattan", "United States", c2);
         addressRepository.saveAll(Arrays.asList(a1, a2, a3));
+
+        AcademicExp ax1 = new AcademicExp(null, "Quimica", "Puc", FormationType.SUPERIOR, Degree.MESTRADO, FormationStatus.COMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c1);
+        AcademicExp ax2 = new AcademicExp(null, "ADS", "Fatec", FormationType.SUPERIOR, Degree.GRADUACAO, FormationStatus.COMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c2);
+        AcademicExp ax3 = new AcademicExp(null, "Engenharia", "Usp", FormationType.MEDIO, Degree.GRADUACAO, FormationStatus.INCOMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c3);
+        academicExpRepository.saveAll(Arrays.asList(ax1, ax2, ax3));
 
         ProfessionalExp px1 = new ProfessionalExp(null, "CompanyOne", "Dev", true, "Job Description", LocalDate.of(2014, 5, 1), LocalDate.of(2024, 8, 1), c2);
         ProfessionalExp px2 = new ProfessionalExp(null, "CompanyTwo", "Dev", false, "Job Description", LocalDate.of(2010, 10, 1), LocalDate.of(2013, 12, 1), c2);
