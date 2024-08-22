@@ -1,6 +1,7 @@
 package com.bruno.senigalha.curriculum.entities;
 
 import com.bruno.senigalha.curriculum.enums.Proficiencylevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -17,25 +18,37 @@ public class Language {
     private Integer comprehensionLevel;
     private Integer writingLevel;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "curriculum_id")
     private Curriculum curriculum;
 
     public Language() {
     }
 
     public Language(Long id, String language, Proficiencylevel conversationLevel, Proficiencylevel comprehensionLevel,
-                    Proficiencylevel writingLevel) {
+                    Proficiencylevel writingLevel, Curriculum curriculum) {
         this.id = id;
         this.language = language;
         setConversationLevel(conversationLevel);
         setComprehensionLevel(comprehensionLevel);
         setWritingLevel(writingLevel);
+        this.curriculum = curriculum;
+    }
+
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
     }
 
     public Proficiencylevel getConversationLevel() {
         return Proficiencylevel.valueOf(conversationLevel);
     }
 
-    public void setConversationLevel(Proficiencylevel conversationLevel){
+    public void setConversationLevel(Proficiencylevel conversationLevel) {
         this.conversationLevel = conversationLevel.getCode();
     }
 
@@ -43,7 +56,7 @@ public class Language {
         return Proficiencylevel.valueOf(comprehensionLevel);
     }
 
-    public void setComprehensionLevel(Proficiencylevel comprehensionLevel){
+    public void setComprehensionLevel(Proficiencylevel comprehensionLevel) {
         this.comprehensionLevel = comprehensionLevel.getCode();
     }
 
@@ -51,7 +64,7 @@ public class Language {
         return Proficiencylevel.valueOf(writingLevel);
     }
 
-    public void setWritingLevel(Proficiencylevel writingLevel){
+    public void setWritingLevel(Proficiencylevel writingLevel) {
         this.writingLevel = writingLevel.getCode();
     }
 

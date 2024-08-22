@@ -1,14 +1,10 @@
 package com.bruno.senigalha.curriculum.entities;
 
 import com.bruno.senigalha.curriculum.enums.Gender;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_curriculum")
@@ -29,6 +25,9 @@ public class Curriculum implements Serializable {
     @OneToOne(mappedBy = "curriculum")
     private Address address;
 
+    @OneToMany(mappedBy = "curriculum")
+    private final Set<Language> language = new HashSet<>();
+
     public Curriculum() {
     }
 
@@ -43,12 +42,16 @@ public class Curriculum implements Serializable {
         this.linkedIn = linkedIn;
     }
 
+    public Set<Language> getLanguage() {
+        return language;
+    }
+
     public Gender getGender() {
         return Gender.valueOf(gender);
     }
 
     public void setGender(Gender gender) {
-        if(gender != null){
+        if (gender != null) {
             this.gender = gender.getCode();
         }
     }
