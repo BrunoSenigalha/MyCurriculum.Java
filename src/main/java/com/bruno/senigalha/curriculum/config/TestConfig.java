@@ -34,6 +34,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private AcademicExpRepository academicExpRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -71,6 +74,11 @@ public class TestConfig implements CommandLineRunner {
         Link link3 = new Link(null, "www.url.com.br", c3);
         Link link4 = new Link(null, "www.url.com.br", c2);
         linkRepository.saveAll(Arrays.asList(link1, link2, link3, link4));
+
+        Project proj1 = new Project(null, "Java Project", "www.link.com.br", "Projeto em java", c2);
+        Project proj2 = new Project(null, "Bank", "www.link.com.br", "Projeto desenvolvido em .NET", c1);
+        Project proj3 = new Project(null, "Account Managment", "www.link.com.br", "Projeto legal", c3);
+        projectRepository.saveAll(Arrays.asList(proj1, proj2, proj3));
 
 
     }
