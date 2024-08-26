@@ -1,0 +1,25 @@
+package com.bruno.senigalha.curriculum.services;
+
+import com.bruno.senigalha.curriculum.entities.Tool;
+import com.bruno.senigalha.curriculum.repositories.ToolRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ToolService {
+
+    @Autowired
+    private ToolRepository repository;
+
+    public List<Tool> findAll() {
+        return repository.findAll();
+    }
+
+    public Tool findById(Long id) {
+        Optional<Tool> obj = repository.findById(id);
+        return obj.get();
+    }
+}

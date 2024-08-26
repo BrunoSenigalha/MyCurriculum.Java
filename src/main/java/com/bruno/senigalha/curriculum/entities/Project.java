@@ -3,11 +3,14 @@ package com.bruno.senigalha.curriculum.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_project")
-public class Project {
+public class Project implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +18,12 @@ public class Project {
     private String projectName;
     private String link;
     private String description;
+
+    @ManyToMany
+    @JoinTable(name = "tb_project_tool",
+            joinColumns = @JoinColumn(name = "tool_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private final Set<Tool> tools = new HashSet<>();
 
     @JsonIgnore
     @ManyToOne
@@ -30,6 +39,10 @@ public class Project {
         this.link = link;
         this.description = description;
         this.curriculum = curriculum;
+    }
+
+    public Set<Tool> getTools(){
+        return tools;
     }
 
     public Curriculum getCurriculum() {
