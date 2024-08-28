@@ -1,6 +1,7 @@
 package com.bruno.senigalha.curriculum.services;
 
 import com.bruno.senigalha.curriculum.entities.AcademicExp;
+import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Project;
 import com.bruno.senigalha.curriculum.repositories.AcademicExpRepository;
 import com.bruno.senigalha.curriculum.repositories.ProjectRepository;
@@ -23,5 +24,9 @@ public class ProjectService {
     public Project findById(Long id) {
         Optional<Project> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public Project insert(Project obj){
+        return repository.save(obj);
     }
 }

@@ -1,5 +1,6 @@
 package com.bruno.senigalha.curriculum.services;
 
+import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Link;
 import com.bruno.senigalha.curriculum.repositories.LinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class LinkService {
     public Link findById(Long id) {
         Optional<Link> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public Link insert(Link obj){
+        return repository.save(obj);
     }
 }

@@ -1,6 +1,7 @@
 package com.bruno.senigalha.curriculum.services;
 
 import com.bruno.senigalha.curriculum.entities.AcademicExp;
+import com.bruno.senigalha.curriculum.entities.Curriculum;
 import com.bruno.senigalha.curriculum.repositories.AcademicExpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class AcademicExpService {
     public AcademicExp findById(Long id) {
         Optional<AcademicExp> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public AcademicExp insert(AcademicExp obj){
+        return repository.save(obj);
     }
 }

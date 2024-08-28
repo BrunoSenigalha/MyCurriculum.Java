@@ -1,6 +1,7 @@
 package com.bruno.senigalha.curriculum.entities;
 
 import com.bruno.senigalha.curriculum.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -22,7 +23,7 @@ public class Curriculum implements Serializable {
     private String email;
     private String linkedIn;
 
-    @OneToOne(mappedBy = "curriculum")
+    @OneToOne(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private Address address;
 
     @OneToMany(mappedBy = "curriculum")

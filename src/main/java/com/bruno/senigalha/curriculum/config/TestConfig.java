@@ -50,9 +50,10 @@ public class TestConfig implements CommandLineRunner {
         curriculumRepository.saveAll(Arrays.asList(c1, c2, c3));
 
         Address a1 = new Address(null, "1566666", "São Paulo", "Brazil", c1);
-        Address a2 = new Address(null, "588955", "Blumenau", "Brazil", c3);
-        Address a3 = new Address(null, "5855558", "Manhattan", "United States", c2);
+        Address a2 = new Address(null, "588955", "Blumenau", "Brazil", c2);
+        Address a3 = new Address(null, "5855558", "Manhattan", "United States", c3);
         addressRepository.saveAll(Arrays.asList(a1, a2, a3));
+
 
         AcademicExp ax1 = new AcademicExp(null, "Quimica", "Puc", FormationType.SUPERIOR, Degree.MESTRADO, FormationStatus.COMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c1);
         AcademicExp ax2 = new AcademicExp(null, "ADS", "Fatec", FormationType.SUPERIOR, Degree.GRADUACAO, FormationStatus.COMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c2);

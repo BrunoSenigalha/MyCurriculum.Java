@@ -1,5 +1,6 @@
 package com.bruno.senigalha.curriculum.services;
 
+import com.bruno.senigalha.curriculum.entities.AcademicExp;
 import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.repositories.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,7 @@ public class LanguageService {
         return obj.get();
     }
 
+    public Language insert(Language obj){
+        return repository.save(obj);
+    }
 }

@@ -22,4 +22,9 @@ public class CurriculumService {
         Optional<Curriculum> obj = repository.findById(id);
         return obj.get();
     }
+
+    public Curriculum insert(Curriculum obj){
+        return repository.save(obj);
+    }
+
 }

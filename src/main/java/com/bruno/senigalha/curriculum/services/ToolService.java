@@ -1,5 +1,6 @@
 package com.bruno.senigalha.curriculum.services;
 
+import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Tool;
 import com.bruno.senigalha.curriculum.repositories.ToolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class ToolService {
     public Tool findById(Long id) {
         Optional<Tool> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public Tool insert(Tool obj){
+        return repository.save(obj);
     }
 }
