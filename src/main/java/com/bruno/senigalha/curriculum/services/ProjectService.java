@@ -1,9 +1,6 @@
 package com.bruno.senigalha.curriculum.services;
 
-import com.bruno.senigalha.curriculum.entities.AcademicExp;
-import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Project;
-import com.bruno.senigalha.curriculum.repositories.AcademicExpRepository;
 import com.bruno.senigalha.curriculum.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
