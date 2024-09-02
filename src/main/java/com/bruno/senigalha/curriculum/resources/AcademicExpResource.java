@@ -36,4 +36,10 @@ public class AcademicExpResource {
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AcademicExp> update(@PathVariable Long id, @RequestBody AcademicExp obj) {
+        obj = service.update(id, obj);
+        return ResponseEntity.ok(obj);
+    }
 }

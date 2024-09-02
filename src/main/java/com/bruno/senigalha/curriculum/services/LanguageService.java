@@ -3,6 +3,7 @@ package com.bruno.senigalha.curriculum.services;
 import com.bruno.senigalha.curriculum.entities.AcademicExp;
 import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.repositories.LanguageRepository;
+import com.bruno.senigalha.curriculum.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class LanguageService {
 
     public Language findById(Long id) {
         Optional<Language> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Language insert(Language obj){

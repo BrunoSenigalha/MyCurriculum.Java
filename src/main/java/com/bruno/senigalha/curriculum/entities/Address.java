@@ -17,6 +17,7 @@ public class Address implements Serializable {
     private Long id;
 
     private String zipCode;
+    private String state;
     private String city;
     private String country;
 
@@ -28,9 +29,10 @@ public class Address implements Serializable {
     public Address() {
     }
 
-    public Address(Long id, String zipCode, String city, String country, Curriculum curriculum) {
+    public Address(Long id, String zipCode,String state, String city, String country, Curriculum curriculum) {
         this.id = id;
         this.zipCode = zipCode;
+        this.state = state;
         this.city = city;
         this.country = country;
         this.curriculum = curriculum;
@@ -58,6 +60,14 @@ public class Address implements Serializable {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCity() {

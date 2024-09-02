@@ -2,6 +2,7 @@ package com.bruno.senigalha.curriculum.services;
 
 import com.bruno.senigalha.curriculum.entities.Project;
 import com.bruno.senigalha.curriculum.repositories.ProjectRepository;
+import com.bruno.senigalha.curriculum.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ProjectService {
 
     public Project findById(Long id) {
         Optional<Project> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Project insert(Project obj){

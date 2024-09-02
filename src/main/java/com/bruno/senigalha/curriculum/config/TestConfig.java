@@ -49,9 +49,9 @@ public class TestConfig implements CommandLineRunner {
         Curriculum c3 = new Curriculum(null, " ", "Anastasia Rose", Gender.FEMININO, "Human Resources Manager", "55555555", "anastasia@gmail.com", "www.linkedin.com.br");
         curriculumRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-        Address a1 = new Address(null, "1566666", "São Paulo", "Brazil", c1);
-        Address a2 = new Address(null, "588955", "Blumenau", "Brazil", c2);
-        Address a3 = new Address(null, "5855558", "Manhattan", "United States", c3);
+        Address a1 = new Address(null, "1566666","São Paulo", "São Paulo", "Brazil", c1);
+        Address a2 = new Address(null, "588955", "Santa Catarina", "Blumenau", "Brazil", c2);
+        Address a3 = new Address(null, "5855558", "New York","Manhattan", "United States", c3);
         addressRepository.saveAll(Arrays.asList(a1, a2, a3));
 
 

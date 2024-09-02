@@ -26,22 +26,22 @@ public class Curriculum implements Serializable {
     @OneToOne(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<ProfessionalExp> professionalExperiences = new HashSet<>();
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<AcademicExp> academicExp = new HashSet<>();
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<Language> languages = new HashSet<>();
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<Link> links = new HashSet<>();
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<Project> projects = new HashSet<>();
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<Tool> tools = new HashSet<>();
 
     public Curriculum() {

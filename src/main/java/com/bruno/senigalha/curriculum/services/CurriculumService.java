@@ -2,8 +2,10 @@ package com.bruno.senigalha.curriculum.services;
 
 import com.bruno.senigalha.curriculum.entities.Curriculum;
 import com.bruno.senigalha.curriculum.repositories.CurriculumRepository;
+import com.bruno.senigalha.curriculum.services.exceptions.DatabaseException;
 import com.bruno.senigalha.curriculum.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class CurriculumService {
 
     public Curriculum findById(Long id) {
         Optional<Curriculum> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Curriculum insert(Curriculum obj){
@@ -49,7 +51,12 @@ public class CurriculumService {
     public void delete(Long id){
         Curriculum entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
-        repository.delete(entity);
+        try{
+            repository.delete(entity);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 
     private void updateData(Curriculum entity, Curriculum obj){

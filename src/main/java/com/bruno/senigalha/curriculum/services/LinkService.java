@@ -3,6 +3,7 @@ package com.bruno.senigalha.curriculum.services;
 import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Link;
 import com.bruno.senigalha.curriculum.repositories.LinkRepository;
+import com.bruno.senigalha.curriculum.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class LinkService {
 
     public Link findById(Long id) {
         Optional<Link> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Link insert(Link obj){

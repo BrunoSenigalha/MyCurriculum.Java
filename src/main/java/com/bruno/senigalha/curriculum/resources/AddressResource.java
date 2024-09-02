@@ -36,4 +36,10 @@ public class AddressResource {
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Address> update(@PathVariable Long id, @RequestBody Address obj) {
+        obj = service.update(id, obj);
+        return ResponseEntity.ok(obj);
+    }
 }
