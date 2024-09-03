@@ -19,22 +19,34 @@ public class LanguageResource {
     private LanguageService service;
 
     @GetMapping
-    public ResponseEntity<List<Language>> findAll(){
+    public ResponseEntity<List<Language>> findAll() {
         List<Language> list = service.findAll();
         return ResponseEntity.ok(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Language> findById(@PathVariable Long id){
+    public ResponseEntity<Language> findById(@PathVariable Long id) {
         Language obj = service.findById(id);
         return ResponseEntity.ok(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Language> insert(@RequestBody Language obj){
+    public ResponseEntity<Language> insert(@RequestBody Language obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Language> update(@PathVariable Long id, @RequestBody Language obj) {
+        obj = service.update(id, obj);
+        return ResponseEntity.ok(obj);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

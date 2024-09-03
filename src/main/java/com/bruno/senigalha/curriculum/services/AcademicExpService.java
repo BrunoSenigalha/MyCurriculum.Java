@@ -1,10 +1,12 @@
 package com.bruno.senigalha.curriculum.services;
 
 import com.bruno.senigalha.curriculum.entities.AcademicExp;
-import com.bruno.senigalha.curriculum.entities.Curriculum;
 import com.bruno.senigalha.curriculum.repositories.AcademicExpRepository;
+import com.bruno.senigalha.curriculum.services.exceptions.DatabaseException;
 import com.bruno.senigalha.curriculum.services.exceptions.ResourceNotFoundException;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,12 +32,20 @@ public class AcademicExpService {
     }
 
     public AcademicExp update(Long id, AcademicExp obj) {
-        return repository.findById(id)
-                .map(entity -> {
-                    updateData(entity, obj);
-                    return repository.save(entity);
-                })
+        return repository.findById(id).map(entity -> {
+            updateData(entity, obj);
+            return repository.save(entity);
+        }).orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public void delete(Long id) {
+        AcademicExp obj = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
+        try{
+            repository.delete(obj);
+        }catch(DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     private void updateData(AcademicExp entity, AcademicExp obj) {
