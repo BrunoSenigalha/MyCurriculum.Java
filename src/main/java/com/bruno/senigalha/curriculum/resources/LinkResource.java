@@ -37,4 +37,16 @@ public class LinkResource {
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Link> update(@PathVariable Long id, @RequestBody Link obj){
+        obj = service.update(id, obj);
+        return ResponseEntity.ok(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
