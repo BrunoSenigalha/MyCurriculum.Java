@@ -40,6 +40,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ToolRepository toolRepository;
 
+    @Autowired
+    private CourseRepository courseRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -54,11 +57,13 @@ public class TestConfig implements CommandLineRunner {
         Address a3 = new Address(null, "5855558", "New York","Manhattan", "United States", c3);
         addressRepository.saveAll(Arrays.asList(a1, a2, a3));
 
-
         AcademicExp ax1 = new AcademicExp(null, "Quimica", "Puc", FormationType.SUPERIOR, Degree.MESTRADO, FormationStatus.COMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c1);
         AcademicExp ax2 = new AcademicExp(null, "ADS", "Fatec", FormationType.SUPERIOR, Degree.GRADUACAO, FormationStatus.COMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c2);
         AcademicExp ax3 = new AcademicExp(null, "Engenharia", "Usp", FormationType.MEDIO, Degree.GRADUACAO, FormationStatus.INCOMPLETO, false, LocalDate.of(2015, 10, 1), LocalDate.of(2020, 5, 1), c3);
         academicExpRepository.saveAll(Arrays.asList(ax1, ax2, ax3));
+
+        Course course1 = new Course(null, TypeCourse.CURSO, "Java", "Curso avançado Java", c1);
+        courseRepository.save(course1);
 
         ProfessionalExp px1 = new ProfessionalExp(null, "CompanyOne", "Dev", true, "Job Description", LocalDate.of(2014, 5, 1), LocalDate.of(2024, 8, 1), c2);
         ProfessionalExp px2 = new ProfessionalExp(null, "CompanyTwo", "Dev", false, "Job Description", LocalDate.of(2010, 10, 1), LocalDate.of(2013, 12, 1), c2);

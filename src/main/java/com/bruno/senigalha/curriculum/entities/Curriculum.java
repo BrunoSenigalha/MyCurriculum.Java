@@ -33,6 +33,9 @@ public class Curriculum implements Serializable {
     private final Set<AcademicExp> academicExp = new HashSet<>();
 
     @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
+    private final Set<Course> courses = new HashSet<>();
+
+    @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
     private final Set<Language> languages = new HashSet<>();
 
     @OneToMany(mappedBy = "curriculum", cascade = CascadeType.ALL)
@@ -56,6 +59,10 @@ public class Curriculum implements Serializable {
         this.phone = phone;
         this.email = email;
         this.linkedIn = linkedIn;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
     }
 
     public Set<Tool> getTools() {
