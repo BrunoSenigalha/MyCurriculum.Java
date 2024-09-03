@@ -1,10 +1,6 @@
 package com.bruno.senigalha.curriculum.resources;
 
-import com.bruno.senigalha.curriculum.entities.AcademicExp;
-import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Project;
-import com.bruno.senigalha.curriculum.repositories.ProjectRepository;
-import com.bruno.senigalha.curriculum.services.AcademicExpService;
 import com.bruno.senigalha.curriculum.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +30,22 @@ public class ProjectResource {
     }
 
     @PostMapping
-    public ResponseEntity<Project> insert(@RequestBody Project obj){
+    public ResponseEntity<Project> insert(@RequestBody Project obj) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Project> update(@PathVariable Long id, @RequestBody Project obj) {
+        obj = service.update(id, obj);
+        return ResponseEntity.ok(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

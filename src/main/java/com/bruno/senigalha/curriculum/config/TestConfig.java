@@ -47,7 +47,7 @@ public class TestConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-        Curriculum c1 = new Curriculum(null, " ", "Lucas Martins", Gender.MASCULINO, "Software Developer", "1699998888", "bruno@gmail.com", "www.linkedin.com.br");
+        Curriculum c1 = new Curriculum(null, " ", "Lucas Martins", Gender.MASCULINO, "Software Developer", "1699998888", "lucas@gmail.com", "www.linkedin.com.br");
         Curriculum c2 = new Curriculum(null, " ", "Jhon Spasia", Gender.PREFIRO_NAO_INFORMAR, "Technical Engineer", "11569822355", "john@gmail.com", "www.linkedin.com.br");
         Curriculum c3 = new Curriculum(null, " ", "Anastasia Rose", Gender.FEMININO, "Human Resources Manager", "55555555", "anastasia@gmail.com", "www.linkedin.com.br");
         curriculumRepository.saveAll(Arrays.asList(c1, c2, c3));

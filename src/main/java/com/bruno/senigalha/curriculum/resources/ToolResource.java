@@ -1,6 +1,5 @@
 package com.bruno.senigalha.curriculum.resources;
 
-import com.bruno.senigalha.curriculum.entities.Language;
 import com.bruno.senigalha.curriculum.entities.Tool;
 import com.bruno.senigalha.curriculum.services.ToolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +35,18 @@ public class ToolResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Tool> update(@PathVariable Long id, @RequestBody Tool obj) {
+        obj = service.update(id, obj);
+        return ResponseEntity.ok(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
