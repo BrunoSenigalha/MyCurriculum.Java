@@ -36,6 +36,16 @@ public class ProfessionalExp implements Serializable {
     public ProfessionalExp() {
     }
 
+    public ProfessionalExp(Long id, String company, String position, Boolean actualJob, String description, LocalDate startDate, Curriculum curriculum) {
+        this.id = id;
+        this.company = company;
+        this.position = position;
+        this.actualJob = actualJob;
+        this.description = description;
+        this.startDate = startDate;
+        this.curriculum = curriculum;
+    }
+
     public ProfessionalExp(Long id, String company, String position, Boolean actualJob, String description, LocalDate startDate, LocalDate endDate, Curriculum curriculum) {
         this.id = id;
         this.company = company;

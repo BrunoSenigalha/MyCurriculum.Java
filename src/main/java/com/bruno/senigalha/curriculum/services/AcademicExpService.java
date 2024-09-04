@@ -3,7 +3,9 @@ package com.bruno.senigalha.curriculum.services;
 import com.bruno.senigalha.curriculum.entities.AcademicExp;
 import com.bruno.senigalha.curriculum.repositories.AcademicExpRepository;
 import com.bruno.senigalha.curriculum.services.exceptions.DatabaseException;
+import com.bruno.senigalha.curriculum.services.exceptions.InvalidDateException;
 import com.bruno.senigalha.curriculum.services.exceptions.ResourceNotFoundException;
+import com.bruno.senigalha.curriculum.services.validations.DataValidation;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,22 +30,32 @@ public class AcademicExpService {
     }
 
     public AcademicExp insert(AcademicExp obj) {
-        return repository.save(obj);
+        try {
+            DataValidation.dataValidation(obj.getStartDate(), obj.getEndDate());
+            return repository.save(obj);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidDateException(e.getMessage());
+        }
     }
 
     public AcademicExp update(Long id, AcademicExp obj) {
-        return repository.findById(id).map(entity -> {
+        AcademicExp entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+        try {
+            DataValidation.dataValidation(obj.getStartDate(), obj.getEndDate());
             updateData(entity, obj);
             return repository.save(entity);
-        }).orElseThrow(() -> new ResourceNotFoundException(id));
+        } catch (IllegalArgumentException e) {
+            throw new InvalidDateException(e.getMessage());
+        }
     }
 
     public void delete(Long id) {
         AcademicExp obj = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
-        try{
+        try {
             repository.delete(obj);
-        }catch(DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
