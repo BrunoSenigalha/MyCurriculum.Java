@@ -1,12 +1,13 @@
 package com.bruno.senigalha.curriculum.entities;
 
+import com.bruno.senigalha.curriculum.services.exceptions.InvalidDateException;
+import com.bruno.senigalha.curriculum.services.validations.DataValidation;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.Objects;
 
 @Entity
